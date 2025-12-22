@@ -57,6 +57,30 @@ const includeTopLayerInput = document.getElementById(
 const includeBottomLayerInput = document.getElementById(
   "includeBottomLayer",
 ) as HTMLInputElement
+const copperSpeedInput = document.getElementById(
+  "copperSpeed",
+) as HTMLInputElement
+const copperNumPassesInput = document.getElementById(
+  "copperNumPasses",
+) as HTMLInputElement
+const copperFrequencyInput = document.getElementById(
+  "copperFrequency",
+) as HTMLInputElement
+const copperPulseWidthInput = document.getElementById(
+  "copperPulseWidth",
+) as HTMLInputElement
+const boardSpeedInput = document.getElementById(
+  "boardSpeed",
+) as HTMLInputElement
+const boardNumPassesInput = document.getElementById(
+  "boardNumPasses",
+) as HTMLInputElement
+const boardFrequencyInput = document.getElementById(
+  "boardFrequency",
+) as HTMLInputElement
+const boardPulseWidthInput = document.getElementById(
+  "boardPulseWidth",
+) as HTMLInputElement
 const reconvertBtn = document.getElementById(
   "reconvertBtn",
 ) as HTMLButtonElement
@@ -98,6 +122,20 @@ function getConversionOptions() {
     ],
     traceMargin: parseFloat(traceMarginInput.value) || 0,
     laserSpotSize: parseFloat(laserSpotSizeInput.value) || 0.005,
+    laserProfile: {
+      copper: {
+        speed: parseFloat(copperSpeedInput.value) || 300,
+        numPasses: parseInt(copperNumPassesInput.value) || 100,
+        frequency: parseFloat(copperFrequencyInput.value) || 20000,
+        pulseWidth: parseFloat(copperPulseWidthInput.value) || 1e-9,
+      },
+      board: {
+        speed: parseFloat(boardSpeedInput.value) || 20,
+        numPasses: parseInt(boardNumPassesInput.value) || 100,
+        frequency: parseFloat(boardFrequencyInput.value) || 20000,
+        pulseWidth: parseFloat(boardPulseWidthInput.value) || 1e-9,
+      },
+    },
   }
 }
 
