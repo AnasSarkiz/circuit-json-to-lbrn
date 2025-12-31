@@ -17,33 +17,34 @@ import { addPcbCutout } from "./element-handlers/addPcbCutout"
 import { createCopperShapesForLayer } from "./createCopperShapesForLayer"
 import { createTraceClearanceAreasForLayer } from "./createTraceClearanceAreasForLayer"
 
+export interface ConvertCircuitJsonToLbrnOptions {
+  includeSilkscreen?: boolean
+  origin?: { x: number; y: number }
+  margin?: number
+  includeCopper?: boolean
+  includeSoldermask?: boolean
+  globalCopperSoldermaskMarginAdjustment?: number
+  includeLayers?: Array<"top" | "bottom">
+  traceMargin?: number
+  laserSpotSize?: number
+  laserProfile?: {
+    copper?: {
+      speed?: number
+      numPasses?: number
+      frequency?: number
+      pulseWidth?: number
+    }
+    board?: {
+      speed?: number
+      numPasses?: number
+      frequency?: number
+      pulseWidth?: number
+    }
+  }
+}
 export const convertCircuitJsonToLbrn = (
   circuitJson: CircuitJson,
-  options: {
-    includeSilkscreen?: boolean
-    origin?: { x: number; y: number }
-    margin?: number
-    includeCopper?: boolean
-    includeSoldermask?: boolean
-    globalCopperSoldermaskMarginAdjustment?: number
-    includeLayers?: Array<"top" | "bottom">
-    traceMargin?: number
-    laserSpotSize?: number
-    laserProfile?: {
-      copper?: {
-        speed?: number
-        numPasses?: number
-        frequency?: number
-        pulseWidth?: number
-      }
-      board?: {
-        speed?: number
-        numPasses?: number
-        frequency?: number
-        pulseWidth?: number
-      }
-    }
-  } = {},
+  options: ConvertCircuitJsonToLbrnOptions = {},
 ): LightBurnProject => {
   const db = cju(circuitJson)
   const project = new LightBurnProject({
