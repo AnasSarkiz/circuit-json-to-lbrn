@@ -44,6 +44,13 @@ export interface ConvertContext {
   topTraceClearanceAreaCutSetting?: CutSetting
   bottomTraceClearanceAreaCutSetting?: CutSetting
 
+  // Cut settings for copper cut fill layers
+  topCopperCutFillCutSetting?: CutSetting
+  bottomCopperCutFillCutSetting?: CutSetting
+
   // Percent-based solder mask margin (scales with element size)
   solderMaskMarginPercent: number
+
+  // Copper cut fill margin (how far to expand the copper outline for the cut fill band)
+  copperCutFillMargin: number
 }
