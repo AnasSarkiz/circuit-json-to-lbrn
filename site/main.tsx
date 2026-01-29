@@ -155,7 +155,7 @@ function getConversionOptions() {
       parseFloat(globalCopperSoldermaskMarginAdjustmentInput.value) || 0,
     solderMaskMarginPercent:
       parseFloat(solderMaskMarginPercentInput.value) || 0,
-    includeLayers: ["top", "bottom"] as Array<"top" | "bottom">,
+    includeLayers: ["top"] as Array<"top" | "bottom">,
     traceMargin: parseFloat(traceMarginInput.value) || 0,
     laserSpotSize: parseFloat(laserSpotSizeInput.value) || 0.005,
     laserProfile: {
