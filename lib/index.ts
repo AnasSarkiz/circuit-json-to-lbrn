@@ -227,7 +227,7 @@ export const convertCircuitJsonToLbrn = async (
         numPasses: copperSettings.numPasses,
         speed: copperSettings.speed,
         scanOpt: "individual",
-        interval: laserSpotSize,
+        interval: 0.03,
         angle: 45,
         crossHatch: true,
       })
@@ -242,7 +242,7 @@ export const convertCircuitJsonToLbrn = async (
         numPasses: copperSettings.numPasses,
         speed: copperSettings.speed,
         scanOpt: "individual",
-        interval: laserSpotSize,
+        interval: 0.03,
         angle: 45,
         crossHatch: true,
       })
