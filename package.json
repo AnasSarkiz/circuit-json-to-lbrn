@@ -21,7 +21,7 @@
     "circuit-json-to-connectivity-map": "^0.0.23",
     "circuit-to-svg": "^0.0.344",
     "kicad-to-circuit-json": "^0.0.43",
-    "kicadts": "^0.0.25",
+    "kicadts": "^0.0.28",
     "schematic-symbols": "^0.0.202",
     "stack-svgs": "^0.0.1",
     "tsup": "^8.5.1"
@@ -30,7 +30,7 @@
     "typescript": "^5"
   },
   "dependencies": {
-    "lbrnts": "^0.0.17",
+    "lbrnts": "^0.0.18",
     "manifold-3d": "^3.3.2"
   }
 }
