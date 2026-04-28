@@ -20,6 +20,7 @@ import { createCopperCutFillForLayer } from "./createCopperCutFillForLayer"
 import { createOxidationCleaningLayerForLayer } from "./createOxidationCleaningLayerForLayer"
 import { LAYER_INDEXES } from "./layer-indexes"
 import { createSoldermaskCureLayer } from "./createSoldermaskCureLayer"
+import { addReflectedBottomBoardCutLayerShapes } from "./addReflectedBottomBoardCutLayerShapes"
 
 export interface ConvertCircuitJsonToLbrnOptions {
   includeSilkscreen?: boolean
@@ -66,6 +67,7 @@ export interface ConvertCircuitJsonToLbrnOptions {
     }
   }
 }
+
 export const convertCircuitJsonToLbrn = async (
   circuitJson: CircuitJson,
   options: ConvertCircuitJsonToLbrnOptions = {},
@@ -150,6 +152,19 @@ export const convertCircuitJsonToLbrn = async (
     qPulseWidth: boardSettings.pulseWidth,
   })
   project.children.push(throughBoardCutSetting)
+
+  let reflectedBottomBoardCutSetting: CutSetting | undefined
+  if (mirrorBottomLayer && includeLayers.includes("bottom")) {
+    reflectedBottomBoardCutSetting = new CutSetting({
+      index: LAYER_INDEXES.reflectedBottomBoardCut,
+      name: "Reflected Bottom Board Cut",
+      numPasses: boardSettings.numPasses,
+      speed: boardSettings.speed,
+      frequency: boardSettings.frequency,
+      qPulseWidth: boardSettings.pulseWidth,
+    })
+    project.children.push(reflectedBottomBoardCutSetting)
+  }
 
   let topSoldermaskCutSetting: CutSetting | undefined
   let bottomSoldermaskCutSetting: CutSetting | undefined
@@ -363,6 +378,7 @@ export const convertCircuitJsonToLbrn = async (
     bottomSoldermaskCutSetting,
     topSoldermaskCureCutSetting,
     bottomSoldermaskCureCutSetting,
+    reflectedBottomBoardCutSetting,
     connMap,
     topCutNetGeoms: new Map(),
     bottomCutNetGeoms: new Map(),
@@ -483,6 +499,8 @@ export const convertCircuitJsonToLbrn = async (
   for (const cutout of db.pcb_cutout.list()) {
     addPcbCutout(cutout, ctx)
   }
+
+  addReflectedBottomBoardCutLayerShapes(ctx)
 
   // Create copper shapes for each layer
   if (includeCopper) {
